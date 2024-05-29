@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-const fs = require('fs');
+import * as fs from 'node:fs';
 const program = new Command;
 
 program
