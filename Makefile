@@ -4,3 +4,5 @@ genDiff:
 lint:
 	npx eslint .
 
+ci:
+	npm ci
