@@ -14,14 +14,14 @@ const createTree = (data1, data2) => {
     unchanged: '  ',
   };
   const result = [];
-  for (let el of compared) {
-    const { key, value, state } = el;
-    if (el.differentValues) {
-      const x = el.differentValues;
+  for (let item = 0; item < compared.length; item += 1) {
+    const { key, value, state } = compared[item];
+    if (compared[item].differentValues) {
+      const x = compared[item].differentValues;
       result.push(`${prefix['removed']}${key}: ${x['value1']}`);
       result.push(`${prefix['added']}${key}: ${x['value2']}`);
     }
-    if (el.state) {
+    if (compared[item].state) {
       result.push(`${prefix[state]}${key}: ${value}`);
     }
   }
