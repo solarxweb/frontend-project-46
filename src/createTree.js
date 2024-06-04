@@ -23,7 +23,7 @@ const createTree = (data1, data2) => {
       default:
         throw new Error('Unexpected situation')
     }
-  }, {});
+  });
   return compare;
 };
 
