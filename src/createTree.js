@@ -1,11 +1,5 @@
 import _ from 'lodash';
 
-const prefix = {
-  added: '+ ',
-  unchanged: '  ',
-  deleted: '- ',
-};
-
 const createTree = (data1, data2) => {
   const commonKeys = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
   const compare = commonKeys.map((el) => {
