@@ -1,5 +1,5 @@
 import path, {dirname} from 'path';
-import fs from 'fs';
+import { expect, test, describe } from 'jest';
 import { fileURLToPath } from 'url';
 import gendiff from '../src/index.js';
 import stylishView from '../src/formatter/stylish.js';

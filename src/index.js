@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import path from 'node:path';
 import fs from 'node:fs';
+import process from 'node:process';
 import parse from './parser.js';
 import createTree from './compareElements.js';
 import outputFormat from './formatter/outputFormat.js'
