@@ -10,9 +10,10 @@ program
   .version('1.0.0');
 
 program
-  .option('-f, --format [type]', 'output format')
+  .option('-f, --format <type>', 'output format', 'stylish')
   .argument('<path1>', 'Path to first file')
   .argument('<path2>', 'Path to second file')
+  .helpOption('-h, --help', 'output usage information')
   .action((path1, path2) => {
     console.log(gendiff(path1, path2));
   });
