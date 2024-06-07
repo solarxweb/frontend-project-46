@@ -2,7 +2,7 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import parse from './parser.js';
-import createTree from './compareObjs.js';
+import createTree from './compareElements.js';
 import outputFormat from './formatter/outputFormat.js'
 
 const getPath = (pathTo) => path.resolve(process.cwd(), pathTo);

@@ -20,7 +20,6 @@ const createTree = (data1, data2) => {
         throw new Error("Arguments aren't gotten or has strange structure")
     }
   });
-  console.log(compare);
   return compare;
 };
 export default createTree;

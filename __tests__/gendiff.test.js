@@ -18,19 +18,6 @@ const expected = `{
   + verbose: true
 }`;
 
-const check = `{
-  - a: {
-        a: {
-            a: a
-        }
-    }
-  + b: {
-        b: {
-            b: b
-        }
-    }
-}`;
-
 const file1 = getFixturePath('file1.json')
 const file2 = getFixturePath('file2.json')
 const actualStylish = gendiff(file1, file2)

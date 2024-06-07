@@ -1,0 +1,26 @@
+name: tests/linter
+
+on: push
+
+jobs:
+  check-correct:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      ## Node -v
+      martrix: 
+        node-version: [20.x]
+
+    steps:
+      - uses: action/checkout@v4
+
+      - name: Execute check of lint && tests
+
+        uses: actions/setup-node@v4
+          with:
+            node-verion: ${{ matrix.node-version }}
+            cache: 'npm'
+      - run: make i
+      - run: make lint
+      - run: make test
