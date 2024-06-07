@@ -18,9 +18,9 @@ jobs:
       - name: Execute check of lint && tests
 
         uses: actions/setup-node@v4
-          with:
-            node-version: ${{ matrix.node-version }}
-            cache: 'npm'
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
       - run: make i
       - run: make lint
       - run: make test
