@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       ## Node -v
-      martrix: 
+      matrix: 
         node-version: [20.x]
 
     steps:
