@@ -2,6 +2,9 @@ name: tests/linter
 
 on: push
 
+env:
+  CI: true
+
 jobs:
   check-correct:
 
