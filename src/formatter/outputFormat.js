@@ -1,4 +1,4 @@
-import stylishView from "./stylish.js"
+import stylishView from './stylish.js';
 
 const outputFormat = {
   stylish: stylishView,

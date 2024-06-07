@@ -11,7 +11,7 @@ const stringify = (value, depth) => {
     return `{\n${entries}\n${closingIndent}}`;
   }
   return `${value}`;
-}
+};
 
 const stylishView = (list) => {
   function innerFunc(listOfDifference, depth) {
@@ -28,7 +28,7 @@ const stylishView = (list) => {
         case 'deleted':
           return `${shortIndent}- ${element.key}: ${stringify(element.value, depth)}`;
         case 'changed':
-          return `${shortIndent}- ${element.key}: ${stringify(element['oldValue'], depth)}\n${shortIndent}+ ${element.key}: ${stringify(element['newValue'], depth)}`;
+          return `${shortIndent}- ${element.key}: ${stringify(element.oldValue, depth)}\n${shortIndent}+ ${element.key}: ${stringify(element.newValue, depth)}`;
         default:
           throw new Error(`Unexpected state of ${element.state}`);
       }
@@ -37,6 +37,6 @@ const stylishView = (list) => {
   }
   const result = innerFunc(list, 1);
   return `{\n${result}\n}`;
-}
+};
 
 export default stylishView;

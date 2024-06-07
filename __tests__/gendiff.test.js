@@ -1,10 +1,10 @@
-import path, {dirname} from 'path';
-import { expect, test, describe } from 'jest';
+import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { expect, test } from 'jest/@globals';
 import gendiff from '../src/index.js';
 import stylishView from '../src/formatter/stylish.js';
 
-const __filename = fileURLToPath(import.meta.url)
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
@@ -18,20 +18,19 @@ const expected = `{
   + verbose: true
 }`;
 
-const file1 = getFixturePath('file1.json')
-const file2 = getFixturePath('file2.json')
-const actualStylish = gendiff(file1, file2)
+test('check stylish output', () => {
+  const file1 = getFixturePath('file1.json');
+  const file2 = getFixturePath('file2.json');
+  const actualStylish = gendiff(file1, file2);
 
-describe('gendiff tests', () => {
-  test('check stylish output', () => {
-    expect(actualStylish).toEqual(expected);
-  });
-  test('if gotten unexisting state in element of object', () => {
-    expect(() => {
-      stylishView([
-        { key: 'follow', value: false, state: 'state' },
-        { key: 'host', value: 'hexlet.io', state: 'arent' },
-        { key: 'host', value: 'hexlet.io', state: 'exists' }])
-    }).toThrow();
+  expect(actualStylish).toEqual(expected);
 });
+
+test('if gotten unexisting state in element of object', () => {
+  expect(() => {
+    stylishView([
+      { key: 'follow', value: false, state: 'state' },
+      { key: 'host', value: 'hexlet.io', state: 'arent' },
+      { key: 'host', value: 'hexlet.io', state: 'exists' }]);
+  }).toThrow();
 });
