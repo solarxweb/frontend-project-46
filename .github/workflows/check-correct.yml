@@ -1,5 +1,5 @@
 # Name of workflow
-name: Node CI
+name: tests/linter
 
 # Trigger the workflow on push or pull request
 on:
@@ -22,12 +22,10 @@ jobs:
 
     steps:
         # Check-out repository under GitHub workspace
-        # https://github.com/actions/checkout
       - uses: actions/checkout@v4
         # Step's name
       - name: Use Node.js ${{ matrix.node-version }}
         # Configures the node version used on GitHub-hosted runners
-        # https://github.com/actions/setup-node
         uses: actions/setup-node@v4
         # The Node.js version to configure
         with:
@@ -37,8 +35,7 @@ jobs:
       - run: make lint
       - run: make test
       - name: Test & publish code coverage
-      #   # Publish code coverage on Code Climate
-      #   # https://github.com/paambaati/codeclimate-action
+
         uses: paambaati/codeclimate-action@v5.0.0
       #   # Add Code Climate secret key
         env:
