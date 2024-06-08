@@ -18,10 +18,10 @@ const expected = `{
   + verbose: true
 }`;
 
-test('check stylish output', () => {
-  const file1 = getFixturePath('file1.json');
-  const file2 = getFixturePath('file2.json');
-  const actualStylish = gendiff(file1, file2);
+test('check json file to stylish view', () => {
+  const jsonFile1 = getFixturePath('file1.json');
+  const jsonFile2 = getFixturePath('file2.json');
+  const actualStylish = gendiff(jsonFile1, jsonFile2);
 
   expect(actualStylish).toEqual(expected);
 });
@@ -29,8 +29,14 @@ test('check stylish output', () => {
 test('if gotten unexisting state in element of object', () => {
   expect(() => {
     stylishView([
-      { key: 'follow', value: false, state: 'state' },
+      { key: 'follow', value: false, state: 'states' },
       { key: 'host', value: 'hexlet.io', state: 'arent' },
       { key: 'host', value: 'hexlet.io', state: 'exists' }]);
   }).toThrow();
 });
+
+test('check yaml files to stylish view', () => {
+  const yamlFile1 = getFixturePath('file1.yaml');
+  const yamlFile2 = getFixturePath('file2.yaml');
+  expect(gendiff(yamlFile1, yamlFile2)).toEqual(expected);
+})
