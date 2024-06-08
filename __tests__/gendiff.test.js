@@ -39,4 +39,4 @@ test('check yaml files to stylish view', () => {
   const yamlFile1 = getFixturePath('file1.yaml');
   const yamlFile2 = getFixturePath('file2.yaml');
   expect(gendiff(yamlFile1, yamlFile2)).toEqual(expected);
-})
+});
