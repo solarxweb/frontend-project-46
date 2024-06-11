@@ -6,7 +6,7 @@
 
 ## This cli utility can compare configuration files and show a difference between them
 
-### **To start need complete this steps:**
+### **To start:**
 ```bash
 git clone
 make ci
