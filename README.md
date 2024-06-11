@@ -4,7 +4,7 @@
 #### Tests percentage of cover 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b63c365b8fb4d0b4cd4c/test_coverage)](https://codeclimate.com/github/solarxweb/frontend-project-46/test_coverage)
 
-#### This cli utility can compare configuration files and show a difference between them
+## This cli utility can compare configuration files and show a difference between them
 
 ### **To start need complete this steps:**
 ```bash
