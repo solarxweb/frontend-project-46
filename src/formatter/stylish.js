@@ -11,11 +11,9 @@ const stringify = (data, depth = 1) => {
     const currentIndent = addIndent(currentDepth);
     const bracketIndent = addIndentForBracket(currentDepth);
     const currentEl = Object.entries(currentData);
-
     const elements = currentEl.map(([key, value]) => `${currentIndent}  ${key}: ${iter(value, currentDepth + 1)}`);
     return ['{', ...elements, `${bracketIndent}}`].join('\n');
   };
-
   return iter(data, depth);
 };
 
