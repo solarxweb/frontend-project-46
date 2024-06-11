@@ -14,8 +14,8 @@ program
   .argument('<path1>', 'Path to first file')
   .argument('<path2>', 'Path to second file')
   .helpOption('-h, --help', 'output usage information')
-  .action((path1, path2) => {
-    console.log(gendiff(path1, path2));
+  .action((path1, path2, options) => {
+    console.log(gendiff(path1, path2, options.format));
   });
 
 program.parse();
