@@ -30,7 +30,7 @@ const plainView = (data) => {
           case 'changed':
             return `Property '${makePathToKey}' was updated. From ${checkValueType(oldValue)} to ${checkValueType(newValue)}`;
           default:
-            throw new Error(`Unknown type ${state}.`);
+            throw new Error(`Unknown state: ${state}.`);
         }
       });
     return result.join('\n');
