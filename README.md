@@ -11,7 +11,7 @@
 git clone
 make ci
 ```
-**To show reference information**
+**To show reference information:**
 ```bash
 make gendiff
 ```
