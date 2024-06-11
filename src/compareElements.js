@@ -18,8 +18,8 @@ const createTree = (data1, data2) => {
       default:
         return {
           key,
-          oldValue: _.isObject(value2) ? 'zdes\' moi polnomochiya vse' : value1,
-          newValue: _.isObject(value2) ? 'nu i zdes\' sootvetstvenno' : value2,
+          oldValue: value1,
+          newValue: value2,
           state: 'changed',
         };
     }
