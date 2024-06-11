@@ -6,12 +6,12 @@
 
 #### This cli utility can compare configuration files and show a difference between them
 
-**To start need complete this steps:**
+### **To start need complete this steps:**
 ```bash
-git clone https://github.com/solarxweb/frontend-project-46.git
+git clone
 make ci
 ```
-To show reference Information
+**To show reference information**
 ```bash
 make gendiff
 ```
