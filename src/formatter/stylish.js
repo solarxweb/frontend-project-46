@@ -26,7 +26,9 @@ const stylishView = (list) => {
     const currentIndent = addIndent(depth);
     const bracketIndent = addIndentForBracket(depth);
     const elements = currentEl.flatMap((node) => {
-      const { state, key, children, value, oldValue, newValue } = node;
+      const {
+        state, key, children, value, oldValue, newValue 
+      } = node;
       switch (state) {
         case 'nested':
           return `${currentIndent}  ${key}: ${iter(children, depth + 1)}`;
