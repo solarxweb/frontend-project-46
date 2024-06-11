@@ -16,7 +16,8 @@ const gendiff = (firstPath, secondPath, format = 'stylish') => {
   const data1 = getData(fileFromPath1);
   const data2 = getData(fileFromPath2);
   const tree = createTree(data1, data2);
-  return outputFormat(tree, format);
+  const formattedOutput = outputFormat(tree, format);
+  return formattedOutput;
 };
 
 export default gendiff;

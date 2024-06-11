@@ -1,42 +1,53 @@
 import _ from 'lodash';
 
-const stringify = (value, depth) => {
-  if (_.isPlainObject(value)) {
-    const indent = ' '.repeat(4 * (depth + 1));
-    const closingIndent = ' '.repeat(4 * depth);
-    const entries = Object.entries(value).map(([key, val]) => {
-      const formattedValue = _.isPlainObject(val) ? stringify(val, depth + 1) : val;
-      return `${indent}${key}: ${formattedValue}`;
-    }).join('\n');
-    return `{\n${entries}\n${closingIndent}}`;
-  }
-  return `${value}`;
+const addIndent = (depth, replacer = ' ', spaceCount = 4) => replacer.repeat((depth * spaceCount) - 2);
+const addIndentForBracket = (depth, replacer = ' ', spaceCount = 4) => replacer.repeat((depth * spaceCount) - spaceCount);
+
+const stringify = (data, depth = 1) => {
+  const iter = (currentData, currentDepth) => {
+    if (!_.isObject(currentData)) {
+      return `${currentData}`;
+    }
+
+    const currentIndent = addIndent(currentDepth);
+    const bracketIndent = addIndentForBracket(currentDepth);
+    const currentEl = Object.entries(currentData);
+
+    const elements = currentEl.map(([key, value]) => `${currentIndent}  ${key}: ${iter(value, currentDepth + 1)}`);
+
+    return ['{', ...elements, `${bracketIndent}}`].join('\n');
+  };
+
+  return iter(data, depth);
 };
 
 const stylishView = (list) => {
-  function innerFunc(listOfDifference, depth) {
-    const space = ' '.repeat(4 * depth);
-    const result = listOfDifference.map((element) => {
-      const shortIndent = space.slice(0, -2);
-      switch (element.state) {
+  const iter = (currentEl, depth) => {
+    const currentIndent = addIndent(depth);
+    const bracketIndent = addIndentForBracket(depth);
+    const elements = currentEl.flatMap((node) => {
+      const { state, key, children, value, oldValue, newValue } = node;
+      switch (state) {
         case 'nested':
-          return `${space}${element.key}: {\n${innerFunc(element.value, depth + 1)}\n${space}}`;
-        case 'added':
-          return `${shortIndent}+ ${element.key}: ${stringify(element.value, depth)}`;
-        case 'unchanged':
-          return `${shortIndent}  ${element.key}: ${stringify(element.value, depth)}`;
+          return `${currentIndent}  ${key}: ${iter(children, depth + 1)}`;
         case 'deleted':
-          return `${shortIndent}- ${element.key}: ${stringify(element.value, depth)}`;
+          return `${currentIndent}- ${key}: ${stringify(value, depth + 1)}`;
+        case 'added':
+          return `${currentIndent}+ ${key}: ${stringify(value, depth + 1)}`;
+        case 'unchanged':
+          return `${currentIndent}  ${key}: ${stringify(value, depth + 1)}`;
         case 'changed':
-          return `${shortIndent}- ${element.key}: ${stringify(element.oldValue, depth)}\n${shortIndent}+ ${element.key}: ${stringify(element.newValue, depth)}`;
+          return [
+            `${currentIndent}- ${key}: ${stringify(oldValue, depth + 1)}`,
+            `${currentIndent}+ ${key}: ${stringify(newValue, depth + 1)}`,
+          ];
         default:
-          throw new Error(`Unexpected state of ${element.state}`);
+          throw new Error(`Unknown state: ${state}.`);
       }
     });
-    return result.join('\n');
-  }
-  const result = innerFunc(list, 1);
-  return `{\n${result}\n}`;
+    return ['{', ...elements, `${bracketIndent}}`].join('\n');
+  };
+  return iter(list, 1);
 };
 
 export default stylishView;
