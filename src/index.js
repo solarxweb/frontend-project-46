@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import process from 'node:process';
 import parse from './parsers.js';
 import createTree from './compareElements.js';
-import outputInFormat from './formatter/index.js';
+import outputViews from './formatter/index.js';
 
 const getPath = (pathTo) => path.resolve(process.cwd(), pathTo);
 const getExtension = (fileName) => path.extname(fileName).slice(1);
@@ -16,7 +16,7 @@ const gendiff = (firstPath, secondPath, format) => {
   const data1 = getData(fileFromPath1);
   const data2 = getData(fileFromPath2);
   const tree = createTree(data1, data2);
-  return outputInFormat(tree, format);
+  return outputViews(tree, format);
 };
 
 export default gendiff;
