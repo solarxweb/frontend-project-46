@@ -20,13 +20,13 @@ describe('tests each format/view for output', () => {
     expect(gendiff(file1, file2, 'stylish')).toEqual(readFile('expectedStylish.txt'));
   });
   test('output yaml result in "stylish" format', () => {
-    file1 = getFixturePath('file1.yaml');
-    file2 = getFixturePath('file2.yaml');
+    file1 = getFixturePath('file1.yml');
+    file2 = getFixturePath('file2.yml');
     expect(gendiff(file1, file2, 'stylish')).toEqual(readFile('expectedStylish.txt'));
   });
   test('check output when format is plain', () => {
-    file1 = getFixturePath('file1.yaml');
-    file2 = getFixturePath('file2.yaml');
+    file1 = getFixturePath('file1.yml');
+    file2 = getFixturePath('file2.yml');
     expect(gendiff(file1, file2, 'plain')).toEqual(readFile('expectedPlain.txt'));
   });
   test('check output when format is "json"', () => {
